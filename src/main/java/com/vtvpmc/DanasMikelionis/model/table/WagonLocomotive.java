@@ -1,4 +1,4 @@
-package com.vtvpmc.DanasMikelionis.model;
+package com.vtvpmc.DanasMikelionis.model.table;
 
 import java.math.BigDecimal;
 
@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Transient;
+
+import com.vtvpmc.DanasMikelionis.model.LocomotiveType;
 
 @Entity
 public class WagonLocomotive {
@@ -17,6 +19,7 @@ public class WagonLocomotive {
 	private int quantityOfSameInTrain;
 	private BigDecimal price;
 	private double volumeM3;
+	private LocomotiveType locomotiveType;
 	
 	public WagonLocomotive() { }
 

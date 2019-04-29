@@ -1,4 +1,4 @@
-package com.vtvpmc.DanasMikelionis.model;
+package com.vtvpmc.DanasMikelionis.model.table;
 
 import java.math.BigDecimal;
 
@@ -17,7 +17,7 @@ public class WagonCargo {
 	private int quantityOfSameInTrain;
 	private BigDecimal price;
 	private double volumeM3;
-	private double maxLiftWeightInTones;
+	private double maxLiftWeightInTons;
 	
 	public WagonCargo() { }
 
@@ -45,8 +45,8 @@ public class WagonCargo {
 		return volumeM3;
 	}
 
-	public double getMaxLiftWeightInTones() {
-		return maxLiftWeightInTones;
+	public double getMaxLiftWeightInTons() {
+		return maxLiftWeightInTons;
 	}
 
 	public void setCreator(String creator) {
@@ -65,8 +65,8 @@ public class WagonCargo {
 		this.volumeM3 = volumeM3;
 	}
 
-	public void setMaxLiftWeightInTones(double maxLiftWeightInTones) {
-		this.maxLiftWeightInTones = maxLiftWeightInTones;
+	public void setMaxLiftWeightInTons(double maxLiftWeightInTons) {
+		this.maxLiftWeightInTons = maxLiftWeightInTons;
 	}
 	
 	

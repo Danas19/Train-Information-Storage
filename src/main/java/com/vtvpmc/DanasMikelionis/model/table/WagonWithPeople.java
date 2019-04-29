@@ -1,4 +1,4 @@
-package com.vtvpmc.DanasMikelionis.model;
+package com.vtvpmc.DanasMikelionis.model.table;
 
 import java.math.BigDecimal;
 

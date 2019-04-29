@@ -20,6 +20,20 @@ public class WagonWithPeople {
 	private int classNumber;
 	
 	public WagonWithPeople() { }
+	
+	
+
+	public WagonWithPeople(String creator, int quantityOfSameInTrain, BigDecimal price, double volumeM3,
+			int classNumber) {
+		super();
+		this.creator = creator;
+		this.quantityOfSameInTrain = quantityOfSameInTrain;
+		this.price = price;
+		this.volumeM3 = volumeM3;
+		this.classNumber = classNumber;
+	}
+
+
 
 	public Long getId() {
 		return id;

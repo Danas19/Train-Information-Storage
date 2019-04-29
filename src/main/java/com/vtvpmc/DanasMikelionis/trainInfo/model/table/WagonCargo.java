@@ -21,6 +21,18 @@ public class WagonCargo {
 	
 	public WagonCargo() { }
 
+	public WagonCargo(String creator, int quantityOfSameInTrain, BigDecimal price, double volumeM3,
+			double maxLiftWeightInTons) {
+		super();
+		this.creator = creator;
+		this.quantityOfSameInTrain = quantityOfSameInTrain;
+		this.price = price;
+		this.volumeM3 = volumeM3;
+		this.maxLiftWeightInTons = maxLiftWeightInTons;
+	}
+
+
+
 	public Long getId() {
 		return id;
 	}

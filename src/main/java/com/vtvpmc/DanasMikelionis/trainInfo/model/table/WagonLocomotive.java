@@ -22,6 +22,20 @@ public class WagonLocomotive {
 	private LocomotiveType locomotiveType;
 	
 	public WagonLocomotive() { }
+	
+	
+
+	public WagonLocomotive(String creator, int quantityOfSameInTrain, BigDecimal price, double volumeM3,
+			LocomotiveType locomotiveType) {
+		super();
+		this.creator = creator;
+		this.quantityOfSameInTrain = quantityOfSameInTrain;
+		this.price = price;
+		this.volumeM3 = volumeM3;
+		this.locomotiveType = locomotiveType;
+	}
+
+
 
 	public Long getId() {
 		return id;

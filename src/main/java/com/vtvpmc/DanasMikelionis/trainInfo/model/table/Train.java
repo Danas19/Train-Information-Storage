@@ -19,7 +19,13 @@ public class Train {
 	private String city;
 	
 	@OneToOne(mappedBy="train")
-	private WagonCargo wagonCargo;
+	private WagonCargo wagonsCargo;
+	
+	@OneToOne(mappedBy="train")
+	private WagonLocomotive wagonsLocomotive;
+	
+	@OneToOne(mappedBy="train")
+	private WagonWithPeople wagonsWithPeople;
 	
 	public Train() { }
 
@@ -33,6 +39,32 @@ public class Train {
 
 	public Long getId() {
 		return id;
+	}
+	
+	
+
+	public WagonCargo getWagonsCargo() {
+		return wagonsCargo;
+	}
+
+	public WagonLocomotive getWagonsLocomotive() {
+		return wagonsLocomotive;
+	}
+
+	public WagonWithPeople getWagonsWithPeople() {
+		return wagonsWithPeople;
+	}
+
+	public void setWagonsCargo(WagonCargo wagonsCargo) {
+		this.wagonsCargo = wagonsCargo;
+	}
+
+	public void setWagonsLocomotive(WagonLocomotive wagonsLocomotive) {
+		this.wagonsLocomotive = wagonsLocomotive;
+	}
+
+	public void setWagonsWithPeople(WagonWithPeople wagonsWithPeople) {
+		this.wagonsWithPeople = wagonsWithPeople;
 	}
 
 	public int getNumber() {

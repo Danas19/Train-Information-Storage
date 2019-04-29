@@ -1,5 +1,6 @@
 package com.vtvpmc.DanasMikelionis.trainInfo.model.table;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 
 import javax.persistence.Entity;
@@ -99,5 +100,7 @@ public class Train {
 		this.city = city;
 	}
 	
-	
+	public BigDecimal getTotalPriceEuros() {
+		return this.wagonsCargo.getTotalPrice().add(this.wagonsLocomotive.getTotalPrice()).add(this.wagonsWithPeople.getTotalPrice());
+	}
 }

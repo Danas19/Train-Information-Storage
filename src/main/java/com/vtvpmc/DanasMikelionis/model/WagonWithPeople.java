@@ -17,6 +17,7 @@ public class WagonWithPeople {
 	private int quantityOfSameInTrain;
 	private BigDecimal price;
 	private double volumeM3;
+	private int classNumber;
 	
 	public WagonWithPeople() { }
 

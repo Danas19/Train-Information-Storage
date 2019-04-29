@@ -30,7 +30,7 @@ public class TrainService {
 		
 		this.trainRepository.save(newTrain);
 		
-		return new ResponseEntity<Train>(newTrain, HttpStatus.OK);
+		return new ResponseEntity<Train>(newTrain, HttpStatus.CREATED);
 	}
 	
 	public ResponseEntity<Train> modifyTrain(Long id, CreateTrainCommand createTrainCommand) throws NullPointerException {
@@ -43,5 +43,11 @@ public class TrainService {
 		this.trainRepository.save(oldTrain);
 		
 		return new ResponseEntity<Train>(oldTrain, HttpStatus.OK);
+	}
+	
+	public ResponseEntity<Train> removeTrain(Long id) throws NullPointerException {
+		Train trainBeforeRemoval = this.trainRepository.findById(id).orElse(null);
+		this.trainRepository.deleteById(id);
+		return new ResponseEntity<Train>(trainBeforeRemoval, HttpStatus.OK);
 	}
 }

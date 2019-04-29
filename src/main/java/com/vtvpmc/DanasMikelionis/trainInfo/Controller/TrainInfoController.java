@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,23 +26,31 @@ public class TrainInfoController {
 	@Autowired
 	private TrainService trainService;
 	
-	@GetMapping(path = "/trains")
+	@GetMapping("/trains")
 	public ResponseEntity<Collection<Train>> getTrains() {
 		return this.trainService.getTrains();
 	}
 	
-	@PostMapping(path = "/trains")
+	@PostMapping("/trains")
 	public ResponseEntity<Train> addTrain(@RequestBody @Valid CreateTrainCommand createTrainCommand) {
 		return this.trainService.addTrain(createTrainCommand);
 	}
 	
-	@PutMapping(path = "/trains/{id}")
+	@PutMapping("/trains/{id}")
 	public ResponseEntity<Train> modifyTrain(@PathVariable Long id, @RequestBody @Valid CreateTrainCommand createTrainCommand) {
 		try {
 			return this.trainService.modifyTrain(id, createTrainCommand);
 		} catch (NullPointerException e) {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
-		
+	}
+	
+	@DeleteMapping("/trains/{id}")
+	public ResponseEntity<Train> removeTrain(@PathVariable Long id) {
+		try {
+			return this.trainService.removeTrain(id);
+		} catch (NullPointerException e) {
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		}
 	}
 }

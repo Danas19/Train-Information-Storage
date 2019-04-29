@@ -1,4 +1,4 @@
-package com.vtvpmc.DanasMikelionis.model.table;
+package com.vtvpmc.DanasMikelionis.trainInfo.model.table;
 
 import java.math.BigDecimal;
 
@@ -7,7 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Transient;
 
-import com.vtvpmc.DanasMikelionis.model.LocomotiveType;
+import com.vtvpmc.DanasMikelionis.trainInfo.model.LocomotiveType;
 
 @Entity
 public class WagonLocomotive {

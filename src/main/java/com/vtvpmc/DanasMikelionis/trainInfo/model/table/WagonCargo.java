@@ -1,4 +1,4 @@
-package com.vtvpmc.DanasMikelionis.model.table;
+package com.vtvpmc.DanasMikelionis.trainInfo.model.table;
 
 import java.math.BigDecimal;
 

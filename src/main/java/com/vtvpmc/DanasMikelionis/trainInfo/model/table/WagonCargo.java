@@ -3,9 +3,11 @@ package com.vtvpmc.DanasMikelionis.trainInfo.model.table;
 import java.math.BigDecimal;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
 
 @Entity
 public class WagonCargo {
@@ -19,6 +21,10 @@ public class WagonCargo {
 	private double volumeM3;
 	private double maxLiftWeightInTons;
 	
+	@OneToOne(fetch = FetchType.LAZY)
+	@MapsId
+	private Train train;
+	
 	public WagonCargo() { }
 
 	public WagonCargo(String creator, int quantityOfSameInTrain, BigDecimal price, double volumeM3,
@@ -30,8 +36,16 @@ public class WagonCargo {
 		this.volumeM3 = volumeM3;
 		this.maxLiftWeightInTons = maxLiftWeightInTons;
 	}
+	
+	
 
+	public Train getTrain() {
+		return train;
+	}
 
+	public void setTrain(Train train) {
+		this.train = train;
+	}
 
 	public Long getId() {
 		return id;

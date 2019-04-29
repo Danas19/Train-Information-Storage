@@ -5,6 +5,7 @@ import java.sql.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Train {
@@ -16,6 +17,9 @@ public class Train {
 	private Date creationDate;
 	private String createdBy;
 	private String city;
+	
+	@OneToOne(mappedBy="train")
+	private WagonCargo wagonCargo;
 	
 	public Train() { }
 

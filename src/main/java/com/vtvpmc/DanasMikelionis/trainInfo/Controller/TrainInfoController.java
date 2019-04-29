@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.vtvpmc.DanasMikelionis.trainInfo.CreateTrainCommand;
 import com.vtvpmc.DanasMikelionis.trainInfo.Service.TrainService;
 import com.vtvpmc.DanasMikelionis.trainInfo.model.table.Train;
+import com.vtvpmc.DanasMikelionis.trainInfo.model.table.WagonCargo;
 
 @RestController
 @CrossOrigin
@@ -59,4 +60,9 @@ public class TrainInfoController {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
 	}
+	
+//	@PostMapping("/trains/{id}/wagonsCargo")
+//	public ResponseEntity<WagonCargo> addWagonCargo(@PathVariable Long id, @RequestBody String tikNeString) {
+//		
+//	}
 }

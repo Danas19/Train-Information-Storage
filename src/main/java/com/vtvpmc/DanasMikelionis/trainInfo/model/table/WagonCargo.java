@@ -6,8 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
-import javax.persistence.OneToOne;
 
 @Entity
 public class WagonCargo {
@@ -21,7 +21,7 @@ public class WagonCargo {
 	private double volumeM3;
 	private double maxLiftWeightInTons;
 	
-	@OneToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@MapsId
 	private Train train;
 	
@@ -49,10 +49,6 @@ public class WagonCargo {
 
 	public Long getId() {
 		return id;
-	}
-
-	public BigDecimal getTotalPrice() {
-		return this.price.multiply(new BigDecimal(quantityOfSameInTrain));
 	}
 
 	public String getCreator() {

@@ -2,11 +2,13 @@ package com.vtvpmc.DanasMikelionis.trainInfo.model.table;
 
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.util.Collection;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Train {
@@ -19,14 +21,14 @@ public class Train {
 	private String createdBy;
 	private String city;
 	
-	@OneToOne(mappedBy="train")
-	private WagonCargo wagonsCargo;
+	@OneToMany(mappedBy="train")
+	private Set<WagonCargo> wagonsCargo;
 	
-	@OneToOne(mappedBy="train")
-	private WagonLocomotive wagonsLocomotive;
+	@OneToMany(mappedBy="train")
+	private Set<WagonLocomotive> wagonsLocomotive;
 	
-	@OneToOne(mappedBy="train")
-	private WagonWithPeople wagonsWithPeople;
+	@OneToMany(mappedBy="train")
+	private Set<WagonWithPeople> wagonsWithPeople;
 	
 	public Train() { }
 
@@ -44,27 +46,27 @@ public class Train {
 	
 	
 
-	public WagonCargo getWagonsCargo() {
+	public Collection<WagonCargo> getWagonsCargo() {
 		return wagonsCargo;
 	}
 
-	public WagonLocomotive getWagonsLocomotive() {
+	public Collection<WagonLocomotive> getWagonsLocomotive() {
 		return wagonsLocomotive;
 	}
 
-	public WagonWithPeople getWagonsWithPeople() {
+	public Set<WagonWithPeople> getWagonsWithPeople() {
 		return wagonsWithPeople;
 	}
 
-	public void setWagonsCargo(WagonCargo wagonsCargo) {
+	public void setWagonsCargo(Set<WagonCargo> wagonsCargo) {
 		this.wagonsCargo = wagonsCargo;
 	}
 
-	public void setWagonsLocomotive(WagonLocomotive wagonsLocomotive) {
+	public void setWagonsLocomotive(Set<WagonLocomotive> wagonsLocomotive) {
 		this.wagonsLocomotive = wagonsLocomotive;
 	}
 
-	public void setWagonsWithPeople(WagonWithPeople wagonsWithPeople) {
+	public void setWagonsWithPeople(Set<WagonWithPeople> wagonsWithPeople) {
 		this.wagonsWithPeople = wagonsWithPeople;
 	}
 
@@ -102,17 +104,18 @@ public class Train {
 	
 	public BigDecimal getTotalPriceEuros() {
 		BigDecimal totalPriceEuros = BigDecimal.ZERO;
-		if (this.wagonsCargo != null) {
-			totalPriceEuros = wagonsCargo.getTotalPrice();
+		if (this.wagonsCargo != null && this.wagonsCargo.size() > 0) {
+			this.wagonsCargo.stream().forEach(w -> totalPriceEuros.add(w.getPrice()));
 		}
 		
-		if (this.wagonsLocomotive != null) {
-			totalPriceEuros = totalPriceEuros.add(wagonsLocomotive.getTotalPrice());
+		if (this.wagonsLocomotive != null && this.wagonsLocomotive.size() > 0) {
+			this.wagonsLocomotive.stream().forEach(w -> totalPriceEuros.add(w.getPrice()));
 		}
 		
-		if (this.wagonsWithPeople != null) {
-			totalPriceEuros = totalPriceEuros.add(wagonsWithPeople.getTotalPrice());
+		if (this.wagonsWithPeople!= null && this.wagonsWithPeople.size() > 0) {
+			this.wagonsWithPeople.stream().forEach(w -> totalPriceEuros.add(w.getPrice()));
 		}
+		
 		return totalPriceEuros;
 	}
 }

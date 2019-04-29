@@ -5,6 +5,7 @@ import java.util.Collection;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -31,6 +32,11 @@ public class TrainInfoController {
 		return this.trainService.getTrains();
 	}
 	
+	@GetMapping("/trains/{id}")
+	public ResponseEntity<Train> getTrain(@PathVariable Long id) {
+		return this.trainService.getTrain(id);
+	}
+	
 	@PostMapping("/trains")
 	public ResponseEntity<Train> addTrain(@RequestBody @Valid CreateTrainCommand createTrainCommand) {
 		return this.trainService.addTrain(createTrainCommand);
@@ -49,7 +55,7 @@ public class TrainInfoController {
 	public ResponseEntity<Train> removeTrain(@PathVariable Long id) {
 		try {
 			return this.trainService.removeTrain(id);
-		} catch (NullPointerException e) {
+		} catch (EmptyResultDataAccessException e) {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
 	}

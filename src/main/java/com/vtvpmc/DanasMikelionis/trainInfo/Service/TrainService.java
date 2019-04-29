@@ -3,6 +3,7 @@ package com.vtvpmc.DanasMikelionis.trainInfo.Service;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,14 @@ public class TrainService {
 	
 	public ResponseEntity<Collection<Train>> getTrains() {
 		return new ResponseEntity<Collection<Train>>(this.trainRepository.findAll(), HttpStatus.OK);
+	}
+	
+	public ResponseEntity<Train> getTrain(Long id) {
+		Train train = this.trainRepository.findById(id).orElse(null);
+		if (train == null) {
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<Train>(train, HttpStatus.OK);
 	}
 	
 	public ResponseEntity<Train> addTrain(CreateTrainCommand createTrainCommand) {
@@ -45,7 +54,7 @@ public class TrainService {
 		return new ResponseEntity<Train>(oldTrain, HttpStatus.OK);
 	}
 	
-	public ResponseEntity<Train> removeTrain(Long id) throws NullPointerException {
+	public ResponseEntity<Train> removeTrain(Long id) throws EmptyResultDataAccessException {
 		Train trainBeforeRemoval = this.trainRepository.findById(id).orElse(null);
 		this.trainRepository.deleteById(id);
 		return new ResponseEntity<Train>(trainBeforeRemoval, HttpStatus.OK);

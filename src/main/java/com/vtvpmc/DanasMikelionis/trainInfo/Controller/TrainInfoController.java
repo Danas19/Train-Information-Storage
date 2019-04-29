@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -32,5 +33,15 @@ public class TrainInfoController {
 	@PostMapping(path = "/trains")
 	public ResponseEntity<Train> addTrain(@RequestBody @Valid CreateTrainCommand createTrainCommand) {
 		return this.trainService.addTrain(createTrainCommand);
+	}
+	
+	@PutMapping(path = "/trains/{id}")
+	public ResponseEntity<Train> modifyTrain(@PathVariable Long id, @RequestBody @Valid CreateTrainCommand createTrainCommand) {
+		try {
+			return this.trainService.modifyTrain(id, createTrainCommand);
+		} catch (NullPointerException e) {
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		}
+		
 	}
 }

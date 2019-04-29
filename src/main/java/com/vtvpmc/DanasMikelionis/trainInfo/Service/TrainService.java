@@ -32,4 +32,16 @@ public class TrainService {
 		
 		return new ResponseEntity<Train>(newTrain, HttpStatus.OK);
 	}
+	
+	public ResponseEntity<Train> modifyTrain(Long id, CreateTrainCommand createTrainCommand) throws NullPointerException {
+		Train oldTrain = this.trainRepository.findById(id).orElse(null);
+		oldTrain.setCity(createTrainCommand.getCity());
+		oldTrain.setCreatedBy(createTrainCommand.getCreatedBy());
+		oldTrain.setCreationDate(createTrainCommand.getCreationDate());
+		oldTrain.setNumber(createTrainCommand.getNumber());
+		
+		this.trainRepository.save(oldTrain);
+		
+		return new ResponseEntity<Train>(oldTrain, HttpStatus.OK);
+	}
 }

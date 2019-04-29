@@ -101,6 +101,18 @@ public class Train {
 	}
 	
 	public BigDecimal getTotalPriceEuros() {
-		return this.wagonsCargo.getTotalPrice().add(this.wagonsLocomotive.getTotalPrice()).add(this.wagonsWithPeople.getTotalPrice());
+		BigDecimal totalPriceEuros = BigDecimal.ZERO;
+		if (this.wagonsCargo != null) {
+			totalPriceEuros = wagonsCargo.getTotalPrice();
+		}
+		
+		if (this.wagonsLocomotive != null) {
+			totalPriceEuros = totalPriceEuros.add(wagonsLocomotive.getTotalPrice());
+		}
+		
+		if (this.wagonsWithPeople != null) {
+			totalPriceEuros = totalPriceEuros.add(wagonsWithPeople.getTotalPrice());
+		}
+		return totalPriceEuros;
 	}
 }
